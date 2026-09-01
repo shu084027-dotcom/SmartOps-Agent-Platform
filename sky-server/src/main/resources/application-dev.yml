@@ -1,0 +1,44 @@
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: ${SKY_DB_HOST}
+    port: ${SKY_DB_PORT}
+    database: ${SKY_DB_NAME}
+    username: ${SKY_DB_USERNAME}
+    password: ${SKY_DB_PASSWORD}
+  alioss:
+    access-key-id: ${SKY_OSS_ACCESS_KEY_ID}
+    access-key-secret: ${SKY_OSS_ACCESS_KEY_SECRET}
+    endpoint: ${SKY_OSS_ENDPOINT}
+    bucket-name: ${SKY_OSS_BUCKET_NAME}
+  redis:
+    host: ${SKY_REDIS_HOST}
+    port: ${SKY_REDIS_PORT}
+    password: ${SKY_REDIS_PASSWORD:}
+    database: ${SKY_REDIS_DB}
+  mongodb:
+    host: ${SKY_MONGO_HOST}
+    port: ${SKY_MONGO_PORT}
+    database: ${SKY_MONGO_DB}
+  wechat:
+    appid: ${SKY_WX_APPID}
+    secret: ${SKY_WX_SECRET}
+    mchid: ${SKY_WX_MCHID}
+    mchSerialNo: ${SKY_WX_MCH_SERIAL_NO}
+    privateKeyFilePath: ${SKY_WX_PRIVATE_KEY_FILE}
+    apiV3Key: ${SKY_WX_API_V3_KEY}
+    weChatPayCertFilePath: ${SKY_WX_PAY_CERT_FILE}
+    notifyUrl: ${SKY_WX_NOTIFY_URL}
+    refundNotifyUrl: ${SKY_WX_REFUND_NOTIFY_URL}
+  shop:
+    address: ${SKY_SHOP_ADDRESS}
+  baidu:
+    ak: ${SKY_BAIDU_AK}
+
+langchain4j:
+  community:
+    redis:
+      host: ${LANGCHAIN_REDIS_HOST}
+      port: ${LANGCHAIN_REDIS_PORT}
+      user: ${LANGCHAIN_REDIS_USER}
+      password: ${LANGCHAIN_REDIS_PASSWORD}

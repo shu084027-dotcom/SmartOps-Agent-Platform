@@ -1,0 +1,52 @@
+{
+  "groups": [
+    {
+      "name": "langchain4j.community.redis",
+      "type": "dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreProperties",
+      "sourceType": "dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "langchain4j.community.redis.dimension",
+      "type": "java.lang.Integer",
+      "sourceType": "dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreProperties"
+    },
+    {
+      "name": "langchain4j.community.redis.host",
+      "type": "java.lang.String",
+      "sourceType": "dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreProperties"
+    },
+    {
+      "name": "langchain4j.community.redis.index-name",
+      "type": "java.lang.String",
+      "sourceType": "dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreProperties"
+    },
+    {
+      "name": "langchain4j.community.redis.metadata-keys",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreProperties"
+    },
+    {
+      "name": "langchain4j.community.redis.password",
+      "type": "java.lang.String",
+      "sourceType": "dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreProperties"
+    },
+    {
+      "name": "langchain4j.community.redis.port",
+      "type": "java.lang.Integer",
+      "sourceType": "dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreProperties"
+    },
+    {
+      "name": "langchain4j.community.redis.prefix",
+      "type": "java.lang.String",
+      "sourceType": "dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreProperties"
+    },
+    {
+      "name": "langchain4j.community.redis.user",
+      "type": "java.lang.String",
+      "sourceType": "dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStoreProperties"
+    }
+  ],
+  "hints": []
+}

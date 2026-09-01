@@ -1,0 +1,33 @@
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Java / Maven
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
+# Logs
+*.log
+logs/
+
+# Local Spring config with secrets
+**/application-local.yml
+
+# Local uploaded/generated files
+**/upload/
+**/uploads/
+**/tmp/
+**/temp/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
