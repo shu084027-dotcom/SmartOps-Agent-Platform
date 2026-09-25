@@ -8,7 +8,9 @@ import com.sky.enumeration.OperationType;
 import com.sky.vo.DishVO;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -60,6 +62,16 @@ public interface DishMapper {
     void update(Dish dish);
 
     List<Dish> list(Dish dish);
+
+    /**
+     * 扣减库存（乐观锁：仅当 stock >= num 时扣减，防止超卖）
+     *
+     * @param id  菜品id
+     * @param num 扣减数量
+     * @return 受影响行数：1 表示扣减成功，0 表示库存不足
+     */
+    @org.apache.ibatis.annotations.Update("update dish set stock = stock - #{num} where id = #{id} and stock >= #{num}")
+    int deductStock(@Param("id") Long id, @Param("num") Integer num);
 
     @Select("select a.* from dish a left join setmeal_dish b on a.id = b.dish_id where b.setmeal_id = #{setmealId}")
     List<Dish> getBySetmealId(Long id);

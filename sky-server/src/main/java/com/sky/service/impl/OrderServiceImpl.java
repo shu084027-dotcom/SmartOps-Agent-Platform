@@ -18,6 +18,7 @@ import com.sky.result.PageResult;
 import com.sky.service.OrderService;
 import com.sky.utils.BaiDuMapUtil;
 import com.sky.utils.HttpClientUtil;
+import com.sky.utils.SnowFlakeUtil;
 import com.sky.utils.WeChatPayUtil;
 import com.sky.vo.OrderPaymentVO;
 import com.sky.vo.OrderStatisticsVO;
@@ -103,7 +104,7 @@ public class OrderServiceImpl implements OrderService {
         orders.setOrderTime(LocalDateTime.now());
         orders.setPayStatus(Orders.UN_PAID);
         orders.setStatus(Orders.PENDING_PAYMENT);
-        orders.setNumber(String.valueOf(System.currentTimeMillis()));
+        orders.setNumber(String.valueOf(SnowFlakeUtil.nextId()));
         orders.setAddress(book.getDetail());
         orders.setPhone(book.getPhone());
         orders.setConsignee(book.getConsignee());
