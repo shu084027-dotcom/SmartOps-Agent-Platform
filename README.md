@@ -29,13 +29,6 @@
 
 平台在管理端引入了一个 AI 智能助手聊天窗口，将复杂的后台操作转变为与 AI 对话的简单过程。
 
-### 演示效果
-
-如果看不到演示效果，动画地址：./sky-take-out/动画.gif
-
-<p align="center">
-  <img src="sky-take-out/动画.gif" alt="AI 助手演示" width="80%">
-</p>
 
 ### 实现亮点
 
