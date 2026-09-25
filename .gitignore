@@ -27,6 +27,9 @@ logs/
 **/tmp/
 **/temp/
 
+# Demo animation (large binary, keep local only)
+动画.gif
+
 # OS
 .DS_Store
 Thumbs.db

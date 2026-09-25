@@ -112,7 +112,28 @@
 
 ---
 
-## 5. 准备工作
+## 5. 秒杀功能：Redis + Lua 原子扣减防超卖
+
+平台内置了一套秒杀库存扣减能力，用于演示高并发场景下如何避免库存超卖。
+
+### 实现要点
+
+1. **Redis + Lua 原子扣减**：将「判断库存是否充足 + 扣减」封装为单个 Lua 脚本，利用 Redis 单线程执行脚本的特性保证原子性，从根源杜绝超卖。
+2. **定时任务预热库存**：`SeckillTask` 在活动开始前将 MySQL 中的菜品库存预热到 Redis，抢购时全程只读 Redis，避免瞬时流量冲击数据库。
+3. **MySQL 乐观锁兜底**：扣减成功后，再用条件更新 `UPDATE dish SET stock = stock - n WHERE id = ? AND stock >= n` 做最终一致性校验；扣减失败则回补 Redis 库存，两层都不允许超卖。
+4. **雪花算法全局唯一订单号**：`SnowFlakeUtil` 生成全局唯一 ID 替代原有的毫秒时间戳，避免高并发下订单号冲突。
+
+### 核心代码位置
+
+- Lua 脚本：`sky-server/src/main/resources/lua/deductStock.lua`
+- 秒杀服务：`SeckillService` / `SeckillServiceImpl`
+- 预热任务：`sky-server/src/main/java/com/sky/task/SeckillTask.java`
+- 唯一 ID：`sky-common/src/main/java/com/sky/utils/SnowFlakeUtil.java`
+
+
+---
+
+## 6. 准备工作
 
 * 安装 MySQL
 * 安装 Redis
@@ -123,7 +144,7 @@
 
 ---
 
-## 6. 环境变量配置
+## 7. 环境变量配置
 
 后端通过 `sky-server/src/main/resources/application-dev.yml` 以 `${...}` 占位符读取环境变量，**启动前必须配置**（可在 IDE 运行配置、系统环境变量或启动脚本中注入）。
 
@@ -153,20 +174,20 @@
 
 ---
 
-## 7. 快速开始
+## 8. 快速开始
 
-### 7.1 准备环境
+### 8.1 准备环境
 
 * JDK 17+
 * Maven 3.8+
 * Node.js + npm（或 yarn）
 * MySQL 8、Redis、MongoDB
 
-### 7.2 初始化数据库
+### 8.2 初始化数据库
 
 执行建库建表脚本，导入项目所需的表结构（可参考 `sky-pojo` 模块 `entity` 包下的实体类自行建表）。
 
-### 7.3 启动后端
+### 8.3 启动后端
 
 ```bash
 cd sky-take-out
@@ -181,7 +202,7 @@ mvn -pl sky-server spring-boot:run
 * 后端接口：`http://localhost:8080`
 * API 文档（Knife4j）：`http://localhost:8080/doc.html`
 
-### 7.4 启动前端
+### 8.4 启动前端
 
 ```bash
 cd project-sky-admin-vue-ts
@@ -191,7 +212,7 @@ npm run serve
 
 浏览器访问 `http://localhost:8888`。
 
-### 7.5 使用 AI 智能助手
+### 8.5 使用 AI 智能助手
 
 1. 在[阿里百炼平台](https://bailian.console.aliyun.com/)开通 DashScope，获取 `API_KEY` 并配置到环境变量；
 2. 启动后进入管理端「智能助手」页面，即可通过自然语言与 AI 对话，例如查询订单、员工、营业额等；
@@ -199,7 +220,7 @@ npm run serve
 
 ---
 
-## 8. 本地服务启动备忘
+## 9. 本地服务启动备忘
 
 启动 Redis（默认端口 6379）：
 
